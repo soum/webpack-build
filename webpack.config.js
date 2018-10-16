@@ -1,10 +1,5 @@
 
 var path = require('path');
-// //var GetFilePath = require('./GetFilePath').getFilePath();
-// var input = { 'static/default/js/util': './app_util/js/util.js',
-// 'static/default/js/index': './app_main/js/index.js',
-// 'static/default/js/interaction': './app_main/js/interaction.js',
-// 'sass': ['./app_util/scss/pages/product.scss','./app_main/scss/pages/app.scss'] }
 module.exports = {
 	mode: 'development',
 	entry: require('./GetFilePath').getFilePath(),
@@ -14,6 +9,14 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				use: ['babel-loader']
+			  },
+			  {
+				test: /\.tpl.js$/,
+				use: ['raw-loader']
+			  },
 			{
 				test: /\.scss$/,
 				use: [
@@ -27,14 +30,7 @@ module.exports = {
 						loader: 'sass-loader'
 					}
 				]
-			},
-			{
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
+			}
 		]
 	}
 	

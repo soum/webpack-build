@@ -1,1 +1,0 @@
-var interaction = 'some interaction'

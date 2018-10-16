@@ -1,0 +1,10 @@
+{
+    "plugins": [
+      ["module-resolver", {
+        "root": [
+          "app_util/js",
+          "app_main/js"
+        ]
+      }]
+    ]
+  }

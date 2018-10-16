@@ -3,8 +3,8 @@ var fs = require('fs');
 var path = [
 	{
 		inputPath: [
-			'./app_util/js/',
-			'./app_main/js/'
+			'./app_util/js/pages/',
+			'./app_main/js/pages/'
 		],
 		outputPath: 'static/default/js/',
 		type: 'js'
@@ -18,7 +18,6 @@ var path = [
 	}
 ];
 
-//console.log(_.map(objects, 'js'));
 function getFilePath() {
 	var out = {};
 	out.sass = [];
@@ -42,4 +41,4 @@ module.exports = {
 	getFilePath: getFilePath
 }
 
-console.log(getFilePath()); // eslint-disable-line no-console
+//console.log(getFilePath()); // eslint-disable-line no-console
