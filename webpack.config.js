@@ -12,11 +12,11 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				use: ['babel-loader']
-			  },
-			  {
+			},
+			{
 				test: /\.tpl.js$/,
 				use: ['raw-loader']
-			  },
+			},
 			{
 				test: /\.scss$/,
 				use: [
