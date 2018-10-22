@@ -1,8 +1,10 @@
-
 var path = require('path');
+var pathMap = require('./PathMap');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
+
 module.exports = {
 	mode: 'development',
-	entry: require('./GetFilePath').getFilePath(),
+	entry: require('./GetFilePath').getFilePath(pathMap),
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'app_dist')
@@ -10,12 +12,21 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx)$/,
+				test: /\.js$/,
 				use: ['babel-loader']
 			},
+			// {
+			// 	test: /\.js$/,
+			// 	use: ['raw-loader']
+			// },
 			{
-				test: /\.tpl.js$/,
-				use: ['raw-loader']
+				test: /\.svg$/,
+				loader: 'svg-sprite-loader',
+				options: {
+				  extract: true,
+				  spriteFilename: '/static/default/images/icons.svg',
+				  runtimeCompat: true
+				}
 			},
 			{
 				test: /\.scss$/,
@@ -32,7 +43,9 @@ module.exports = {
 				]
 			}
 		]
-	}
-	
+	},
+	plugins: [
+		new SpriteLoaderPlugin()
+	]
 };
 

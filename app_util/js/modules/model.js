@@ -1,1 +1,1 @@
-console.log('app_util model.js')
+console.log('app_util model.js'); // eslint-disable-line no-console

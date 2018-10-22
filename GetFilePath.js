@@ -1,24 +1,5 @@
 var fs = require('fs');
-
-var path = [
-	{
-		inputPath: [
-			'./app_util/js/pages/',
-			'./app_main/js/pages/'
-		],
-		outputPath: 'static/default/js/',
-		type: 'js'
-	},{
-		inputPath: [
-			'./app_util/scss/pages/',
-			'./app_main/scss/pages/'
-		],
-		outputPath: 'static/default/css/',
-		type: 'sass'
-	}
-];
-
-function getFilePath() {
+function getFilePath(path) {
 	var out = {};
 	out.sass = [];
 	path.forEach(obj => {
@@ -27,7 +8,7 @@ function getFilePath() {
 			fileNames.forEach(fileName => {
 				if(obj.type == 'js'){
 					out[obj.outputPath+fileName.split('.')[0]] = dirNname + fileName;
-				} else{
+				} else {
 					out.sass.push(dirNname + fileName);
 				}
 				
