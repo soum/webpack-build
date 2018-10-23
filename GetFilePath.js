@@ -1,5 +1,6 @@
 var fs = require('fs');
-function getFilePath(path) {
+var path = require('./PathMap').path;
+function getFilePath() {
 	var out = {};
 	out.sass = [];
 	path.forEach(obj => {
@@ -21,5 +22,3 @@ function getFilePath(path) {
 module.exports = {
 	getFilePath: getFilePath
 }
-
-//console.log(getFilePath()); // eslint-disable-line no-console

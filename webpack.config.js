@@ -2,50 +2,48 @@ var path = require('path');
 var pathMap = require('./PathMap');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
-module.exports = {
-	mode: 'development',
-	entry: require('./GetFilePath').getFilePath(pathMap),
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'app_dist')
-	},
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				use: ['babel-loader']
-			},
-			// {
-			// 	test: /\.js$/,
-			// 	use: ['raw-loader']
-			// },
-			{
-				test: /\.svg$/,
-				loader: 'svg-sprite-loader',
-				options: {
-				  extract: true,
-				  spriteFilename: '/static/default/images/icons.svg',
-				  runtimeCompat: true
-				}
-			},
-			{
-				test: /\.scss$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							name: 'static/default/css/[name].css',
-						}
-					},
-					{
-						loader: 'sass-loader'
-					}
+module.exports = env => {
+	console.log('region' + env.region);
+	switch(env.region){
+		case 'emea':
+			return [{
+				mode: 'development',
+				entry: require('./GetFilePath').getFilePath(),
+				output: {
+					filename: '[name].js',
+					path: path.resolve(__dirname, 'app_dist_'+env.region)
+				},
+				module: pathMap.webpackModule[env.region],
+				plugins: [
+					new SpriteLoaderPlugin()
+				]
+			},{
+				mode: 'development',
+				entry: require('./GetFilePath').getFilePath(),
+				output: {
+					filename: '[name].js',
+					path: path.resolve(__dirname, 'app_dist')
+				},
+				module: pathMap.webpackModule.refapp,
+				plugins: [
+					new SpriteLoaderPlugin()
+				]
+			}]
+		break;
+		default:
+			return {
+				mode: 'development',
+				entry: require('./GetFilePath').getFilePath(),
+				output: {
+					filename: '[name].js',
+					path: path.resolve(__dirname, 'app_dist')
+				},
+				module: pathMap.webpackModule.refapp,
+				plugins: [
+					new SpriteLoaderPlugin()
 				]
 			}
-		]
-	},
-	plugins: [
-		new SpriteLoaderPlugin()
-	]
-};
+
+	}
+}
 

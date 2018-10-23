@@ -2,8 +2,8 @@
     "plugins": [
       ["module-resolver", {
         "root": [
-          "app_util/js",
-          "app_main/js"
+          "app_emea/js",
+          "app_core/js"
         ]
       }]
     ]
