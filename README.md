@@ -25,5 +25,7 @@ npm install
 ### Build
 
 ```
-npm run build
+without any argument
+//npm run build
+webpack --env.region=emea
 ```
